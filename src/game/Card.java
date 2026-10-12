@@ -13,5 +13,6 @@ public enum Card {
 		Cattermelon,
 		RainbowRalphingCat,
 		TacoCat,
+		OverweightBikiniCat
 }
 

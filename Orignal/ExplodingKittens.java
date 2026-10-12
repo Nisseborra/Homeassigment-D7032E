@@ -80,7 +80,7 @@ public class ExplodingKittens {
         }		
 	}
 
-	public ExplodingKittens(String[] params) throws Exception { // reaname params for better name
+	public ExplodingKittens(String[] params) throws Exception { 
 		if(params.length == 2) {
 			this.initGame(Integer.valueOf(params[0]).intValue(), Integer.valueOf(params[1]).intValue()); // class of the game
 		} else if(params.length == 1) {
@@ -102,7 +102,6 @@ public class ExplodingKittens {
 	public void initGame(int numPlayers, int numBots) {
 		try {
 	        server(numPlayers, numBots);  // makes the server
-											// having so the server fixes the deck and store it there, and gives it to the player when it needed.
 			//Create the deck  // have a deck class to handle this. 
 			for(int i=0; i<6-players.size(); i++) {deck.add(Card.Defuse);} // dont add 2 cards for
 			for(int i=0; i<4; i++) {deck.add(Card.Attack);}
@@ -178,8 +177,8 @@ public class ExplodingKittens {
 		return i;
 	}
 
-	public void game(int startPlayer) throws Exception { // best to rewrite game into classes games and split upt function depeing on what they do
-		Player currentPlayer = players.get(startPlayer); // so each time time we start with the player who start the game not random
+	public void game(int startPlayer) throws Exception { 
+		Player currentPlayer = players.get(startPlayer); 
 		int playersLeft = players.size(); 
 		do { //while playersLeft>1
 			for(Player p : players) {

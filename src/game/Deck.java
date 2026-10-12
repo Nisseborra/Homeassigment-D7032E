@@ -22,7 +22,7 @@ private void addcards(Card card, int count) {
 
 
 
-public void Create_deck(int numplayers){
+public void CreateDeck(int numplayers){
            if(numplayers < 2 || numplayers > 5){
                 throw new IllegalArgumentException("Number of players must be between 2 and 5.");
             }
@@ -31,7 +31,8 @@ public void Create_deck(int numplayers){
             }
             else{
                  addcards(Card.Defuse, 2);
-            };
+            }
+
 			addcards(Card.Attack, 4);
 			addcards(Card.Favor, 4);
 			addcards(Card.Nope, 5);
@@ -46,12 +47,12 @@ public void Create_deck(int numplayers){
        
 }
 
-public void shuffle_deck(){
+public void ShuffleDeck(){
     Collections.shuffle(deck);
     }
 
 
-public Card drawcard(){
+public Card DrawCard(){
     if (deck.isEmpty()){
         throw new IllegalArgumentException("no card left in deck");
     }
@@ -61,11 +62,9 @@ public Card drawcard(){
 }
 
 
-public void deal_defuse(Player player){
-    add_to_hand(player, Card.Defuse);
-}
 
-public  ArrayList<Card> getTopcards(int count){
+
+public  ArrayList<Card> GetTopCards(int count){
             ArrayList<Card> topcards = new ArrayList<Card>();
         if(count < 0 || count > deck.size()){
             throw new IllegalArgumentException("requested cards are to many for the deck size");
@@ -76,11 +75,17 @@ public  ArrayList<Card> getTopcards(int count){
         return(topcards);
 }
 
-public void insertcardindeck(Card card, int postion){
-        if(postion < 0 || postion > deck.size()){
-            throw new IllegalArgumentException("invalid deck postion:"+ postion);
+public void InsertCardInDeck(Card card, int position){
+        if(position < 0 || position > deck.size()){
+            throw new IllegalArgumentException("invalid deck position:"+ position);
         }
-        deck.add(postion, card);
+        deck.add(position, card);
+}
+
+public void RandomCardInsert(Card card){
+            int i = (int) (Math.random() * deck.size());
+            InsertCardInDeck(card, i);
+
 }
 
 

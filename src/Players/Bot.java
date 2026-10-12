@@ -9,9 +9,5 @@ class Bot(){
     public int Botid;
     public ArrayList<deck> hand = new ArrayList<deck>();
 
-
-
-
-    
 }
 
