@@ -2,17 +2,17 @@ package game;
 
 
 import java.util.ArrayList;
-import Players.Player;
+import players.Player;
 
 
 class TurnManager{
     private int currentPlayer = 0;
-    private int turnsReaming = 1;
+    private int turnsRemaining = 1;
 
 
     public void SetCurrentTurn(int id, ArrayList<Player> players){
         if(players.isEmpty() || id <0|| id >= players.size()){
-             throw new IllegalArgumentException("iinvalid player");
+             throw new IllegalArgumentException("invalid player");
         }
         currentPlayer = id;
     }
@@ -23,7 +23,7 @@ class TurnManager{
         return currentPlayer;
     }
      public int GetTurnsRemaining(){
-        return turnsReaming;
+        return turnsRemaining;
     }
     
 
@@ -35,7 +35,7 @@ class TurnManager{
         }
         for(int i = 0; i < players.size(); i++){
             currentPlayer = (currentPlayer+1)%players.size();
-            if(players.get(currentPlayer).isAlive()){
+            if(players.get(currentPlayer).IsAlive()){
                 return true; 
             }
         }
@@ -48,19 +48,19 @@ class TurnManager{
         if(players.isEmpty()){
             return;
         }
-        turnsReaming--;
+        turnsRemaining--;
 
-        if(turnsReaming > 0) {
+        if(turnsRemaining > 0) {
             return;
         }
 
         NextAlivePlayer(players);
-        turnsReaming = 1;
+        turnsRemaining = 1;
     }
     
     public void AddTurns(int extraturns){
         if(extraturns > 0){
-            turnsReaming += extraturns;
+            turnsRemaining += extraturns;
         }
     }
 

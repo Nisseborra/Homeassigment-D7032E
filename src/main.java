@@ -1,6 +1,6 @@
 // behövede den här för någon anledning, men vet inte varför
 import game.GameEngine;
-import Players.Player;
+import players.Player;
 import java.util.ArrayList;
 
 public class Main {
@@ -11,7 +11,7 @@ public class Main {
         players.add(new Player(1));
 
         GameEngine game = new GameEngine();
-        game.initGame(players);
+        game.InitGame(players);
 
         System.out.println("Game initialized!");
     }

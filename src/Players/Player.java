@@ -1,18 +1,18 @@
-Package Players;
+package players;
 
 
 import java.util.ArrayList;
 import game.Card;
 
 
-class Player{
+public class Player{
     private int id;
     private ArrayList<Card> hand  = new ArrayList<>();;
     private boolean alive = true;
 
 
 
-public void Player(int player_id){
+public Player(int player_id){
     if(player_id < 0){
         throw new IllegalArgumentException("player_id cant be negative");
     }
@@ -26,7 +26,7 @@ public boolean HasCard(Card card){return hand.contains(card);}
 public boolean IsAlive(){return alive;}
 
 public void AddToHand(Card card){
-    if(card == null || card.isblank()){
+    if(card == null){
         throw new IllegalArgumentException("Card cant be nothing");
     }
     hand.add(card);
@@ -42,9 +42,10 @@ public Card RemoveFromHandPosition(int pos){
 }
 
 public Card RemoveSpecificCard(Card card){
-                Card cardToRemove = hascard(card);
-                hand.remove(cardToRemove);
-                return cardToRemove;
+               if(!hand.remove(card)){
+                    throw new IllegalArgumentException("Card not in hand");
+               }
+               return card;
 }
 
 

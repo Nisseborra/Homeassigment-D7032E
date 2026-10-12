@@ -1,7 +1,7 @@
 package game;
 
 import java.util.ArrayList;
-
+import players.Player;
 
 
 public class GameState{
@@ -23,7 +23,7 @@ public class GameState{
     this.discardpile = new ArrayList<Card>();
     this.currentplayer = 0;
     this.gameover = false;
-    this.winner = null;
+    this.winner = -1;
 
   }
 
@@ -36,7 +36,7 @@ public ArrayList<Player> GetPlayers(){
 
     // add to discard pile
     public void AddToDiscardPile(Card card){
-        if (!card) {
+        if (card == null) {
             throw new IllegalArgumentException("Card cannot be null.");
         }
         discardpile.add(card);
@@ -72,7 +72,7 @@ public ArrayList<Player> GetPlayers(){
 
     // set winner
         public void SetWinner(int player_id){
-            if( player_id < 0 || player_id > Players.size){
+            if( player_id < 0 || player_id > Players.size()){
                  throw new IllegalArgumentException("Invalid player index.");
             }
     

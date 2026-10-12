@@ -2,9 +2,9 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Random;
-import Players.Player;
+import players.Player;
 
-class GameEngine{
+public class GameEngine{
 
         private GameState gamestate;
         private Deck deck;
@@ -15,14 +15,14 @@ class GameEngine{
                 deck = new Deck();
                 turnManager = new TurnManager();
                     for(int i = 0; i < players.size(); i++){
-                        players.get(i).addtohand(Card.Defuse);
+                        players.get(i).AddToHand(Card.Defuse);
                     }
                     
                 deck.CreateDeck(players.size());
                 deck.ShuffleDeck();
                 for(int k = 0; k < 6; k++){
                          for(int i = 0; i < players.size(); i++){
-                         players.get(i).addtohand(deck.DrawCard());
+                         players.get(i).AddToHand(deck.DrawCard());
                     }
                 }
                 for(int i = 0; i < players.size()-1; i++){
@@ -38,7 +38,7 @@ class GameEngine{
 
 
         public void PlayCard(Player player, Card card){
-                    if(!player.hascard(card)){
+                    if(!player.HasCard(card)){
 
                             return;
                     }
@@ -49,19 +49,19 @@ class GameEngine{
         }
 
         public void drawCard(){
-            Player currentplayer =  gamestate.getCurrentPlayer();
-            if(!currentplayer.alive){
+            Player currentplayer =  gamestate.GetCurrentPlayer();
+            if(!currentplayer.IsAlive()){
                  throw new IllegalArgumentException("Not alive, Game ended");
             }
             Card drawncard = deck.DrawCard();
-            currentplayer.addtohand(drawncard);
+            currentplayer.AddToHand(drawncard);
 
             if(drawncard != Card.ExplodingKitten){
-                turnManager.NextTurn(gamestate.getplayers());
+                turnManager.NextTurn(gamestate.GetPlayers());
                 return;
             }
            
-             if(currentplayer.hascard(Card.Defuse)){
+             if(currentplayer.HasCard(Card.Defuse)){
                 gamestate.AddToDiscardPile(currentplayer.RemoveSpecificCard(Card.Defuse));
                 Card expoldingkitten = currentplayer.RemoveSpecificCard(Card.ExplodingKitten);
                     // addd interation later
@@ -71,6 +71,7 @@ class GameEngine{
                  gamestate.GetCurrentPlayer().Eliminate();
                 turnManager.NextTurn(gamestate.GetPlayers());
                 // send back that either you or  person is dead
+        }
         }
 
 
@@ -91,7 +92,7 @@ class GameEngine{
 
 
 
-        }
+        
 
 
 
