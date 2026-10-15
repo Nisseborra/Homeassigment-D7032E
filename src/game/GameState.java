@@ -90,7 +90,7 @@ public ArrayList<Player> GetPlayers(){
         }
 
     public void endgame(Player player){
-       SetWinner(player.id);
+       SetWinner(player.GetId());
        gameover = true;
     }
 

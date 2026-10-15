@@ -11,6 +11,7 @@ public class GameEngine{
         private TurnManager turnManager;
 
         public void InitGame(ArrayList<Player> players){
+                System.out.print("GameINIT START");
                 gamestate = new GameState(players);
                 deck = new Deck();
                 turnManager = new TurnManager();
@@ -39,14 +40,11 @@ public class GameEngine{
 
         public void PlayCard(Player player, Card card){
                     if(!player.HasCard(card)){
-
-                            return;
+                        return;
                     }
                    // CardRules(player, card);
 
-                   
-
-        }
+                    }
 
         public void drawCard(){
             Player currentplayer =  gamestate.GetCurrentPlayer();

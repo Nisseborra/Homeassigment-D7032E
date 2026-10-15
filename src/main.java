@@ -1,18 +1,26 @@
-// behövede den här för någon anledning, men vet inte varför
-import game.GameEngine;
-import players.Player;
-import java.util.ArrayList;
 
-public class Main {
-    public static void main(String[] args) {
-        ArrayList<Player> players = new ArrayList<>();
+import java.io.IOException;
+import network.GameServer;
+import network.NetworkPlayer;
 
-        players.add(new Player(0));
-        players.add(new Player(1));
+public class main {
+   public static void main(String[] args) throws IOException {
+        GameServer server = new GameServer(5000, 2,0);
+        Thread serverThread = new Thread(server::start);
+        serverThread.start();
 
-        GameEngine game = new GameEngine();
-        game.InitGame(players);
+        NetworkPlayer player = new NetworkPlayer();
+         NetworkPlayer player1 = new NetworkPlayer();
+        try {
+            
+             player.connect("127.0.0.1", 5000);
+             player1.connect("127.0.0.1", 5000);
+            
+        } catch (Exception e) {
+             System.out.println("coulnt connect");
+        }
+        
 
-        System.out.println("Game initialized!");
+        
     }
 }
